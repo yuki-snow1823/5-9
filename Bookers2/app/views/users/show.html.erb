@@ -1,4 +1,17 @@
 <h1>ここはUser/idのページ</h1>
 
+<h1>User info</h1>
+<div class="profile-container">
+    <h3 class="profile-name">name:<%= @user.name %></h3>
+    <h3 class="profile-name">introduction:</h3>
+
+    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+  <% if @user.id == current_user.id %>
+        <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
+    <% end %>
+</div>
+
 <h1>投稿フォーム</h1>
+
 <h1>投稿一覧</h1>
+
