@@ -27,6 +27,12 @@
 <% end %>
 
 <h2>Title:</h2>
-<p><%= @book.title %></p>
+<p><%= link_to @book.title, book_path(@book.id) %></p>
 <h2>Body:</h2>
 <p><%= @book.body %></p>
+  <% if @user.id == current_user.id %>
+    <%= link_to "Edit", edit_book_path(@book.id) %></p>
+    <%= link_to "Destroy", book_path(@book.id) , method: :delete, "data-confirm" => "Are you sure?" %>
+  <% end %>
+
+<!-- 編集ボタンと削除ボタンをつける 編集バッチリ-->

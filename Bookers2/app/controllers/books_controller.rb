@@ -26,6 +26,26 @@ class BooksController < ApplicationController
     @booknew = Book.new
   end
 
+  def edit
+    @book = Book.find(params[:id]) 
+    # 仮で入力
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    @book.update(book_params)
+    # 何しているか
+    redirect_to book_path(@book.id)
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path
+  # 一覧画面へリダイレクトしたい
+  # 文字の表示をインデックスでリダイレクトした後に行いたい 
+  end
+
   private
   def book_params
     params.require(:book).permit(:title, :body)
