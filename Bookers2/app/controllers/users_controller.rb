@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
 
   def index
+    @user = current_user
+    # この考えめっちゃ大事
+    @users = User.all
+    @book = Book.new
+    @books = Book.all
   end
 
   def edit
@@ -10,6 +15,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @book = Book.new
+    @books = @user.books
+    # 自分の投稿が羅列されるように
   end
 
   def update
