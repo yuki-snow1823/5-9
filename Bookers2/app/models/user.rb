@@ -6,4 +6,7 @@ class User < ApplicationRecord
 
   attachment :profile_image
   # 関連づけた。refileの仕様上idという部分を省きました。
+
+  has_many :books, dependent: :destroy
+  # Bookモデルは複数形であってる？
 end

@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :home, only: [:new, :create, :index, :show]
   # 試しにやってみたが違った。ただあとで使うかもしれないから保留。
   resources :users
+
+  resources :books
 end
