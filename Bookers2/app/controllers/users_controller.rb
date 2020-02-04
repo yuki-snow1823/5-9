@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book = Book.new
     @books = @user.books
-    # 自分の投稿が羅列されるように
+    # 自分の投稿が羅列されるように(ユーザーに関連している本)
   end
 
   def update

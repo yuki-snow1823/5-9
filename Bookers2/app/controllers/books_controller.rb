@@ -20,6 +20,10 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id]) 
     @books = Book.all
     # Aさんの全部の本という記述にしたい。自分の投稿一覧の章を見直す
+
+    @user = @book.user
+    # 本の投稿者が誰か
+    @booknew = Book.new
   end
 
   private
