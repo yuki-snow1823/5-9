@@ -6,7 +6,17 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     # 保存の前に、ユーザーのIDと関連してますよという記述をしてあげることで連動する！セーブの直前の行に書く
     @book.save
-    redirect_to book_path(@book.id)
+
+    if @book.update(book_params)
+     flash[:success] = "Book was successfully created."
+     redirect_to book_path(@book.id)
+   else
+    @books = Book.all
+    @user = current_user
+    render action: :index
+    # indexのアクションを無視してインデックスに行く（再定義した理由）／renderの上に書くこと/newもコピペするとミスデータが上書きされる
+    end
+
   end
 
   def index
@@ -18,6 +28,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id]) 
+    # このままだと@bookに前のデータが入ってしまう
     @books = Book.all
     # Aさんの全部の本という記述にしたい。自分の投稿一覧の章を見直す
 
@@ -35,6 +46,10 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     @book.update(book_params)
+
+  if @book.update(book_params)
+    flash[:success] = "Book was successfully updated."
+  end
     # 何しているか
     redirect_to book_path(@book.id)
   end

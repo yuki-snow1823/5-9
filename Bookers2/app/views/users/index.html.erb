@@ -1,5 +1,10 @@
-<% if user_signed_in? %>
-　<%= render '/users/show', user: @user,book: @book %>
+<% if flash[:success] %>
+  <div class="flash">
+    <%= flash[:success] %>
+  </div>
+<% end %>
+
+<%= render '/users/show', user: @user,book: @book %>
 
 <div class="col-xs-9">
   　<h1>Users</h1>
@@ -18,12 +23,3 @@
     </tr>
   </div>
 </table>
-
-<% else %>
-<p>welcome to Bookers !!</p><br>
-<p/>In Bookers,
-you can share and exchange your opinions , inpressions , and emotions
-about various books!</p>
-
-<p>(ログアウトしているよ。)</p>
-<% end %>

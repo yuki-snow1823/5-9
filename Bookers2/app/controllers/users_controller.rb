@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_member!
 
   def index
     @user = current_user
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
     @book = Book.new
     @books = @user.books
     # 自分の投稿が羅列されるように(ユーザーに関連している本)
@@ -22,8 +23,16 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+
+  if @user.update(user_params)
+    flash[:success] = "User was successfully updated."
     redirect_to user_path(@user.id)
+  else
+    render action: :edit
   end
+  end
+  # elseの下に入れると二重になる
+
 
   def create
   end

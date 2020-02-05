@@ -9,4 +9,7 @@ class User < ApplicationRecord
 
   has_many :books, dependent: :destroy
   # Bookモデルは複数形であってる？
+  #length: { minimum: 2}
+  validates :name, presence: true, length: { in: 2..20 } 
+  validates :introduction, length: {maximum: 50}
 end

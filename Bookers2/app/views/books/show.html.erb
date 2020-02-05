@@ -1,4 +1,11 @@
-<%= render '/users/show', user: @user,book: @book %>
+<% if flash[:success] %>
+  <div class="flash">
+    <%= flash[:success] %>
+  </div>
+<% end %>
+
+  <%= render '/users/show', user: @user,book: @booknew %>
+<!-- 共有テンプレートは好きなインスタンス変数を入れられる -->
 
     <div class="col-xs-9">
       <h2>Books detail</h2>
@@ -26,4 +33,3 @@
 </tr>
 </table>
 </div>
-<!-- 編集ボタンと削除ボタンをつける 編集バッチリ-->
