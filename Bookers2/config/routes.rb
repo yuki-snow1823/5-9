@@ -5,13 +5,12 @@ Rails.application.routes.draw do
   # この上のやつログイン後？後でチェック
 
   # git status見ながら正しいURLにくっつけた
+  get 'home/about' => 'home#index', as: 'about'
   resources :home, only: [:new, :create, :show]
   # 試しにやってみたが違った。ただあとで使うかもしれないから保留。
   resources :users
 
   resources :books
-
-  get 'home/about' => 'home#index', as: 'about'
 
 
   # root :to => 'user#index'

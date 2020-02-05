@@ -10,21 +10,23 @@
 </head>
 
 <body>
-
-  <div id="slidemenu">
+  <div class="navbar navbar-inverse">
+    <div class="navbar-left text-muted" >
+      <h2 class="title">Bookers</h2>
+    </div>
     <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
       <% if user_signed_in? %>
       <li class="">
-        <%= link_to 'Home', user_path(@user.id) %>
+        <%= link_to 'Home', user_path(@user.id), class: "glyphicon glyphicon-home home" %>
       </li>
       <li class="">
-        <%= link_to 'User', users_path %>
+        <%= link_to 'User', users_path , class: "glyphicon glyphicon-user users" %>
       </li>
       <li class="">
-        <%= link_to 'Book', books_path %>
+        <%= link_to 'Book', books_path, class: "glyphicon glyphicon-book books"  %>
       </li>
       <li class="">
-        <%= link_to "logout", destroy_user_session_path, method: :delete %>
+        <%= link_to "logout", destroy_user_session_path, method: :delete , class: "glyphicon glyphicon-log-out logout" %>
       </li>
 
       <% else %>
@@ -45,6 +47,6 @@
     </ul>
   </div>
   <%= yield %>
-  <p>フッターです。</p>
+  <footer class="commonf">CopyRight Infratop.inc</footer>
 </body>
 </html>
