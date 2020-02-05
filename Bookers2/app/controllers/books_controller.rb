@@ -88,7 +88,8 @@ class BooksController < ApplicationController
     @user = @book.user
     # 本に結びついたユーザーを取り出す
     if current_user != @user
-      redirect_to books_path
+      redirect_to user_path
+      # 考える!!userのshowに行けない、一覧じゃない
     end
   end
 
