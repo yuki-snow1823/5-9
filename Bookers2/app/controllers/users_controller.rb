@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate_member!
+  # ログインしているユーザーのみ・・・意図的に
+  before_action :authenticate_user! 
+
 
   def index
     @user = current_user
@@ -14,7 +16,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
+    # urlをもとにユーザーをとってくる
     @book = Book.new
     @books = @user.books
     # 自分の投稿が羅列されるように(ユーザーに関連している本)
