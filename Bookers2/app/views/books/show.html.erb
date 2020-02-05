@@ -26,6 +26,9 @@
  
 <% end %>
 
+  <%= link_to attachment_image_tag(@user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"),user_path(@user.id) %>
+  <p><%= link_to @user.name, user_path(@user.id) %></p>
+
 <h2>Title:</h2>
 <p><%= link_to @book.title, book_path(@book.id) %></p>
 <h2>Body:</h2>

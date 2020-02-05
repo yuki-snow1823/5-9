@@ -31,8 +31,9 @@
 
 <h2>Books</h2>
 <!-- ここに登録者一覧を書き出したい →できた-->
+<!-- 画像に「その人の本一覧」＝user/id に行くリンクをつけたい できた！でも、「その投稿した人の」にしないと。→f.user.idでかいけつブックに関連するユーザーに関連するidということ。必ず復習！！！！！！！-->
 <% @books.each do |f| %>
-  <%= attachment_image_tag f.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+  <%= link_to attachment_image_tag(f.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"),user_path(f.user.id) %>
   <!-- .userは、「モデル名（小文字）でデータを参照できる,：データを指定」取り出してくるユーザーのデータは１つしかないから単数形-->
   <%= link_to f.title, book_path(f.id) %>
   <%= f.body %><br>
