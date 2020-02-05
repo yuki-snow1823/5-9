@@ -29,6 +29,7 @@ class BooksController < ApplicationController
   def edit
     @book = Book.find(params[:id]) 
     # 仮で入力
+    render layout: false #application.html.erbを適用したくない
   end
 
   def update

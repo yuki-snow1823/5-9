@@ -34,6 +34,8 @@
 <% @books.each do |f| %>
   <%= attachment_image_tag f.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
   <!-- .userは、「モデル名（小文字）でデータを参照できる,：データを指定」-->
-  <%= f.title %>
+  <%= link_to f.title, book_path(f.id) %>
   <%= f.body %><br>
 <% end %>
+
+<!-- ここにも編集じゃなくて詳細リンク繋がないと -->

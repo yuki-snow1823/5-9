@@ -1,16 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Bookers2</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Bookers2</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <%= yield %>
-  </body>
+<body>
+
+  <div id="slidemenu">
+    <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+      <% if user_signed_in? %>
+      <li class="">
+        <%= link_to 'Home', user_path(@user.id) %>
+      </li>
+      <li class="">
+        <%= link_to 'User', users_path %>
+      </li>
+      <li class="">
+        <%= link_to 'Book', books_path %>
+      </li>
+      <li class="">
+        <%= link_to "logout", destroy_user_session_path, method: :delete %>
+      </li>
+
+      <% else %>
+      <li class="">
+        <%= link_to "Home", users_path %>
+      </li>
+      <li class="">
+        <%= link_to "About", about_path %>
+      </li>      
+      <!-- 上二つが仮。ログアウト時のホームと、home/aboutを調べる。 -->
+      <li class="">
+        <%= link_to "sign up", new_user_registration_path %>
+      </li>
+      <li class="">
+        <%= link_to "Login", new_user_session_path %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <%= yield %>
+  <p>フッターです。</p>
+</body>
 </html>
