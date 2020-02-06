@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   # ログインしているユーザーのみ・・・意図的に
   before_action :authenticate_user! 
+  before_action :correct_user, only: [:edit, :update]
+  # 予備
 
 
   def index
@@ -43,5 +45,15 @@ class UsersController < ApplicationController
   private 
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    if current_user != @user
+       redirect_to user_path(current_user.id)
+       # 考える!!userのshow（自分）に行けない、一覧じゃない！　復習必須　考え方　定義して
+       #paramsだと結局前のやつを参照しちゃう
+       #正しい人のIDだからこういう表現になるのだと思う
+    end
   end
 end
